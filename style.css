@@ -5,36 +5,36 @@
 }
 
 :root {
-  --text-color: white;
+  --text-color: #ffffff;
+  /* Gradiente: Laranja da logo -> Transição suave -> Preto */
   --bg-gradient: linear-gradient(
     180deg,
-    #cc6600 0%,
-    #994d00 25%,
-    #663300 50%,
-    #1a1a1a 75%,
+    #f28321 0%,    /* Laranja fiel à sua logo atual */
+    #9c5212 35%,   /* Tom de transição para não sujar a cor */
+    #1a1a1a 75%,   /* Escurecimento */
     #000000 100%
   );
 
- --stroke-color: rgb(78, 72, 58);
- --surface-color: rgba(198, 178, 132, 0.18);
- --surface-color-hover: rgba(170, 145, 92, 0.22);
- --highlight-color: rgba(120, 105, 60, 0.18);
- --switch-bg-url: url(./assets/sun.svg);
+  /* Estilização dos elementos */
+  --stroke-color: rgba(255, 255, 255, 0.2);
+  --surface-color: rgba(255, 255, 255, 0.08);
+  --surface-color-hover: rgba(242, 131, 33, 0.15); /* Brilho laranja no hover */
+  --highlight-color: rgba(242, 131, 33, 0.2);
 }
 
-/*!corpo*/
-
+/* Corpo da página */
 body {
   background: var(--bg-gradient) no-repeat top center/cover;
   height: 100vh;
+  background-attachment: fixed; /* O fundo fica parado enquanto os links rolam */
 }
+
 body * {
   font-family: "Inter", sans-serif;
   color: var(--text-color);
 }
 
-/*!container*/
-
+/* Container */
 #container {
   width: 100%;
   max-width: 588px;
@@ -42,28 +42,30 @@ body * {
   padding: 0 24px;
 }
 
-/*!perfil*/
-
+/* Perfil - Onde fica sua logo */
 #profile {
   text-align: center;
-  padding: 1px;
+  padding: 20px 0;
 }
+
 #profile img {
-  width: 200px;
+  width: 180px; /* Tamanho ajustado para destacar o círculo */
   margin: auto;
+  display: block;
 }
 
 #profile p {
   font-weight: 500;
-  line-height: 50px;
-  margin-top: 1px;
+  line-height: 40px;
+  margin-top: 8px;
+  letter-spacing: 0.5px;
 }
+
 #profile a {
   text-decoration: none;
 }
 
-/* !links */
-
+/* Links (Botões) */
 ul {
   list-style: none;
   display: flex;
@@ -80,23 +82,25 @@ ul li a {
 
   background: var(--surface-color);
   border: 1px solid var(--stroke-color);
-  border-radius: 8px;
+  border-radius: 12px; /* Bordas um pouco mais arredondadas */
 
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
+  /* Efeito de Vidro */
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 
   text-decoration: none;
   font-weight: 500;
-
-  transition: background 0.2s;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 ul li a:hover {
   background: var(--surface-color-hover);
-  border: 1.5px solid var(--text-color);
+  border: 1px solid #f28321; /* Acende na cor da logo */
+  transform: scale(1.02); /* Leve "pulso" */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 
-/* !links sociais */
+/* Redes Sociais */
 #social-links {
   display: flex;
   justify-content: center;
@@ -109,46 +113,32 @@ ul li a:hover {
   align-items: center;
   justify-content: center;
   padding: 16px;
-  transition: background 0.2s;
+  transition: all 0.2s;
   border-radius: 50%;
 }
 
 #social-links a:hover {
   background: var(--highlight-color);
+  color: #f28321; /* Ícones sociais ficam laranja no hover */
 }
 
-/* 👇 ALTERAÇÃO AQUI */
+/* Rodapé */
 footer {
-  padding: 24px 0;
+  padding: 32px 0;
   text-align: center;
-  font-size: 11px; /* diminuído */
-  opacity: 0.7; /* opcional: deixa mais discreto */
+  font-size: 11px;
+  opacity: 0.6;
 }
 
+/* Responsividade */
 @media (min-width: 700px) {
-  :root {
-    --bg-url: url(./assets/Background-light.jpg);
-  }
-
-  .light {
-    --bg-url: url(./assets/Background-dark.jpg);
+  #container {
+    margin: 80px auto 0px;
   }
 }
 
+/* Animações */
 @keyframes slide-in {
-  from {
-    left: 0;
-  }
-  to {
-    left: 50%;
-  }
-}
-
-@keyframes slide-back {
-  from {
-    left: 50%;
-  }
-  to {
-    left: 0;
-  }
+  from { left: 0; }
+  to { left: 50%; }
 }
